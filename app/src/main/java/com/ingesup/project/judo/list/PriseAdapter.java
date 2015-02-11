@@ -15,30 +15,28 @@ import java.util.List;
 /**
  * Created by clément on 11/02/2015.
  */
-public class PriseAdapter extends ArrayAdapter{
-    private Context mContext;
+public class PriseAdapter extends ArrayAdapter {
+
     private int mRessource;
     private List<Takedown> mPrises;
 
-    public PriseAdapter(Context mContext, int mRessource, List<Takedown> mPrises) {
-        super(mContext,mRessource,mPrises);
+    public PriseAdapter(Context context, int ressource, List<Takedown> prises) {
+        super(context, ressource, prises);
 
-        this.mContext = mContext;
-        this.mRessource = mRessource;
-        this.mPrises = mPrises;
+        this.mRessource = ressource;
+        this.mPrises = prises;
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
     {
         if(convertView == null)
-        {
-            convertView = LayoutInflater.from(getContext()).inflate(mRessource,parent,false);
-        }
+            convertView = LayoutInflater.from(getContext()).inflate(mRessource, parent, false);
 
         final Takedown priseEnCours = mPrises.get(position);
 
         TextView textViewTitre = (TextView) convertView.findViewById(R.id.tv_item_titre);
-        textViewTitre.setText(priseEnCours.getName());
+        textViewTitre.setText(priseEnCours.getName() + " - " + priseEnCours.getCategory().getName());
+
         return convertView;
     }
 }

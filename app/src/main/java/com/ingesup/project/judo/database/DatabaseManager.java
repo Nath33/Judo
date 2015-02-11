@@ -22,9 +22,10 @@ public class DatabaseManager {
     private static DatabaseManager _instance;
     private DatabaseOpenHelper mDatabaseOpenHelper;
 
-    public static DatabaseManager getInstance() {
+    public static DatabaseManager getInstance(Context context) {
         if (_instance == null) {
             _instance = new DatabaseManager();
+            _instance.init(context);
         }
         return _instance;
     }

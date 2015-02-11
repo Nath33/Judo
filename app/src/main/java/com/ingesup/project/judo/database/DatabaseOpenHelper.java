@@ -21,8 +21,12 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "judo.db";
     private static final int DATABASE_VERSION = 1;     // change whenever anything in the database changes
 
+    private Context mContext;
+
     public DatabaseOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+        mContext = context;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
         for(Category c : categoriesToInsert){
             try {
-                DatabaseManager.getInstance().insertCategory(db, c);
+                DatabaseManager.getInstance(mContext).insertCategory(db, c);
             } catch (SQLException ignored) {}
         }
     }
@@ -171,7 +175,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
         for(Takedown t : takedownsToInsert){
             try {
-                DatabaseManager.getInstance().insertTakedown(db, t);
+                DatabaseManager.getInstance(mContext).insertTakedown(db, t);
             } catch (SQLException ignored) {}
         }
     }
