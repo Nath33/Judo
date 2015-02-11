@@ -9,6 +9,13 @@ public class Takedown {
     private String mName;
     private Category mCategory;
 
+    public Takedown() {};
+
+    public Takedown(String name, int categoryId){
+        this.mName = name;
+        this.mCategory = new Category(categoryId);
+    }
+
     public int getId() {
         return mId;
     }
