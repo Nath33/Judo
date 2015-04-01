@@ -9,10 +9,8 @@
     tools:context=".MainActivity">
 
     <ListView
-        android:id="@+id/lv_prises"
+        android:id="@+id/lv_strikes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        </ListView>
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

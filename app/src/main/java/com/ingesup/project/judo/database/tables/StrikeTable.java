@@ -3,9 +3,9 @@ package com.ingesup.project.judo.database.tables;
 /**
  * Created by Changeform on 11/02/2015.
  */
-public class TakedownTable {
+public class StrikeTable {
 
-    public static final String TABLE_NAME = "takedown";
+    public static final String TABLE_NAME = "strike";
 
     public static final String _ID = "_id";
     public static final String COLUMN_NAME = "name";

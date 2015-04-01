@@ -8,7 +8,7 @@ public class Category {
     private int mId;
     private String mName;
 
-    public Category() {};
+    public Category() {}
 
     //Constructeur utilisé pour insérer les prises dans la base de données
     public Category(int id){

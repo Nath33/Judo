@@ -3,15 +3,15 @@ package com.ingesup.project.judo.beans;
 /**
  * Created by Changeform on 11/02/2015.
  */
-public class Takedown {
+public class Strike {
 
     private int mId;
     private String mName;
     private Category mCategory;
 
-    public Takedown() {};
+    public Strike() {}
 
-    public Takedown(String name, int categoryId){
+    public Strike(String name, int categoryId){
         this.mName = name;
         this.mCategory = new Category(categoryId);
     }

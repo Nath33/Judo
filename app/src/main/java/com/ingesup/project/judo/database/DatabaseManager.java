@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ingesup.project.judo.beans.Category;
-import com.ingesup.project.judo.beans.Takedown;
+import com.ingesup.project.judo.beans.Strike;
 import com.ingesup.project.judo.database.tables.CategoryTable;
-import com.ingesup.project.judo.database.tables.TakedownTable;
+import com.ingesup.project.judo.database.tables.StrikeTable;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -92,15 +92,15 @@ public class DatabaseManager {
 
     /**/
 
-    /** TAKEDOWNS **/
+    /** STRIKES **/
 
 
-    public long insertTakedown(SQLiteDatabase database, Takedown takedownToInsert) throws SQLException {
+    public long insertStrike(SQLiteDatabase database, Strike strikeToInsert) throws SQLException {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(TakedownTable.COLUMN_NAME, takedownToInsert.getName());
-        contentValues.put(TakedownTable.COLUMN_CATEGORY_ID, takedownToInsert.getCategory().getId());
+        contentValues.put(StrikeTable.COLUMN_NAME, strikeToInsert.getName());
+        contentValues.put(StrikeTable.COLUMN_CATEGORY_ID, strikeToInsert.getCategory().getId());
 
-        long newRowId = database.insert(TakedownTable.TABLE_NAME, null, contentValues);
+        long newRowId = database.insert(StrikeTable.TABLE_NAME, null, contentValues);
 
         if(newRowId == -1)
             throw new SQLException("Insertion Failed");
@@ -108,62 +108,62 @@ public class DatabaseManager {
         return newRowId;
     }
 
-    public List<Takedown> getAllTakedowns(){
-        List<Takedown> takedowns = new ArrayList<Takedown>();
+    public List<Strike> getAllStrikes(){
+        List<Strike> strikes = new ArrayList<Strike>();
 
         SQLiteDatabase db = mDatabaseOpenHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(TakedownTable.TABLE_NAME, null, null, null, null, null, null);
+        Cursor cursor = db.query(StrikeTable.TABLE_NAME, null, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
-            Takedown takedown = new Takedown();
-            takedown.setId(cursor.getInt(cursor.getColumnIndex(TakedownTable._ID)));
-            takedown.setName(cursor.getString(cursor.getColumnIndex(TakedownTable.COLUMN_NAME)));
-            takedown.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(TakedownTable.COLUMN_CATEGORY_ID))));
-            takedowns.add(takedown);
+            Strike strike = new Strike();
+            strike.setId(cursor.getInt(cursor.getColumnIndex(StrikeTable._ID)));
+            strike.setName(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_NAME)));
+            strike.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(StrikeTable.COLUMN_CATEGORY_ID))));
+            strikes.add(strike);
         }
 
-        return takedowns;
+        return strikes;
     }
 
-    public List<Takedown> getTakedownsByCategory(int categoryId){
+    public List<Strike> getStrikes(int categoryId){
         SQLiteDatabase db = mDatabaseOpenHelper.getReadableDatabase();
-        List<Takedown> takedowns = new ArrayList<Takedown>();
+        List<Strike> strikes = new ArrayList<Strike>();
 
         String whereClause = null;
 
         if(categoryId != -1)
-            whereClause = TakedownTable.COLUMN_CATEGORY_ID + " = " + String.valueOf(categoryId);
+            whereClause = StrikeTable.COLUMN_CATEGORY_ID + " = " + String.valueOf(categoryId);
 
-        Cursor cursor = db.query(TakedownTable.TABLE_NAME, null, whereClause, null, null, null, null);
+        Cursor cursor = db.query(StrikeTable.TABLE_NAME, null, whereClause, null, null, null, null);
 
         while (cursor.moveToNext()) {
-            Takedown takedown = new Takedown();
-            takedown.setId(cursor.getInt(cursor.getColumnIndex(TakedownTable._ID)));
-            takedown.setName(cursor.getString(cursor.getColumnIndex(TakedownTable.COLUMN_NAME)));
-            takedown.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(TakedownTable.COLUMN_CATEGORY_ID))));
+            Strike strike = new Strike();
+            strike.setId(cursor.getInt(cursor.getColumnIndex(StrikeTable._ID)));
+            strike.setName(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_NAME)));
+            strike.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(StrikeTable.COLUMN_CATEGORY_ID))));
 
-            takedowns.add(takedown);
+            strikes.add(strike);
         }
 
-        return takedowns;
+        return strikes;
     }
 
-    public Takedown getTakedown(int takedownId){
+    public Strike getStrike(int strikeId){
         SQLiteDatabase db = mDatabaseOpenHelper.getReadableDatabase();
 
-        String whereClause = TakedownTable._ID + "=?";
-        String[] whereConditions = new String[] { String.valueOf(takedownId) };
+        String whereClause = StrikeTable._ID + "=?";
+        String[] whereConditions = new String[] { String.valueOf(strikeId) };
 
-        Cursor cursor = db.query(TakedownTable.TABLE_NAME, null, whereClause, whereConditions, null, null, null);
+        Cursor cursor = db.query(StrikeTable.TABLE_NAME, null, whereClause, whereConditions, null, null, null);
 
         if (cursor.moveToNext()) {
-            Takedown takedown = new Takedown();
-            takedown.setId(cursor.getInt(cursor.getColumnIndex(TakedownTable._ID)));
-            takedown.setName(cursor.getString(cursor.getColumnIndex(TakedownTable.COLUMN_NAME)));
-            takedown.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(TakedownTable.COLUMN_CATEGORY_ID))));
+            Strike strike = new Strike();
+            strike.setId(cursor.getInt(cursor.getColumnIndex(StrikeTable._ID)));
+            strike.setName(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_NAME)));
+            strike.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(StrikeTable.COLUMN_CATEGORY_ID))));
 
-            return takedown;
+            return strike;
         }
 
         return null;

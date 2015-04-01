@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.ingesup.project.judo.beans.Category;
-import com.ingesup.project.judo.beans.Takedown;
+import com.ingesup.project.judo.beans.Strike;
 import com.ingesup.project.judo.database.tables.CategoryTable;
-import com.ingesup.project.judo.database.tables.TakedownTable;
+import com.ingesup.project.judo.database.tables.StrikeTable;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,11 +36,11 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TakedownTable.TABLE_CREATE);
+        db.execSQL(StrikeTable.TABLE_CREATE);
         db.execSQL(CategoryTable.TABLE_CREATE);
 
         insertCategories(db);
-        insertTakedowns(db);
+        insertStrikes(db);
     }
 
     @Override
@@ -65,117 +65,117 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void insertTakedowns(SQLiteDatabase db){
-        List<Takedown> takedownsToInsert = new ArrayList<Takedown>();
+    private void insertStrikes(SQLiteDatabase db){
+        List<Strike> strikesToInsert = new ArrayList<Strike>();
 
-        takedownsToInsert.add(new Takedown("Seoi-nage", 0));
-        takedownsToInsert.add(new Takedown("Tai-Otoshi", 0));
-        takedownsToInsert.add(new Takedown("Kata-guruma", 0));
-        takedownsToInsert.add(new Takedown("Sukui-nage", 0));
-        takedownsToInsert.add(new Takedown("Uki-Otoshi", 0));
-        takedownsToInsert.add(new Takedown("Sumi-Otoshi", 0));
-        takedownsToInsert.add(new Takedown("Obi-Otoshi", 0));
-        takedownsToInsert.add(new Takedown("Seoi-Otoshi", 0));
-        takedownsToInsert.add(new Takedown("Yama-arashi", 0));
-        takedownsToInsert.add(new Takedown("Morote-gari", 0));
-        takedownsToInsert.add(new Takedown("Kuchuki-taoshi", 0));
-        takedownsToInsert.add(new Takedown("Kibisu-gaeshi", 0));
-        takedownsToInsert.add(new Takedown("Uchi-mata-sukashi", 0));
-        takedownsToInsert.add(new Takedown("Kouchi-gaeshi", 0));
-        takedownsToInsert.add(new Takedown("Ippon-seoi-nage", 0));
+        strikesToInsert.add(new Strike("Seoi-nage", 1));
+        strikesToInsert.add(new Strike("Tai-Otoshi", 1));
+        strikesToInsert.add(new Strike("Kata-guruma", 1));
+        strikesToInsert.add(new Strike("Sukui-nage", 1));
+        strikesToInsert.add(new Strike("Uki-Otoshi", 1));
+        strikesToInsert.add(new Strike("Sumi-Otoshi", 1));
+        strikesToInsert.add(new Strike("Obi-Otoshi", 1));
+        strikesToInsert.add(new Strike("Seoi-Otoshi", 1));
+        strikesToInsert.add(new Strike("Yama-arashi", 1));
+        strikesToInsert.add(new Strike("Morote-gari", 1));
+        strikesToInsert.add(new Strike("Kuchuki-taoshi", 1));
+        strikesToInsert.add(new Strike("Kibisu-gaeshi", 1));
+        strikesToInsert.add(new Strike("Uchi-mata-sukashi", 1));
+        strikesToInsert.add(new Strike("Kouchi-gaeshi", 1));
+        strikesToInsert.add(new Strike("Ippon-seoi-nage", 1));
 
-        takedownsToInsert.add(new Takedown("Uki-goshi", 1));
-        takedownsToInsert.add(new Takedown("O-goshi", 1));
-        takedownsToInsert.add(new Takedown("Koshi-guruma", 1));
-        takedownsToInsert.add(new Takedown("Tsurikomi-goshi", 1));
-        takedownsToInsert.add(new Takedown("Harai-goshi", 1));
-        takedownsToInsert.add(new Takedown("Tsuri-goshi", 1));
-        takedownsToInsert.add(new Takedown("Hane-goshi", 1));
-        takedownsToInsert.add(new Takedown("Utsuri-goshi", 1));
-        takedownsToInsert.add(new Takedown("Ushiro-goshi", 1));
-        takedownsToInsert.add(new Takedown("Daki-age", 1));
-        takedownsToInsert.add(new Takedown("Sode-tsurikomi-goshi", 1));
+        strikesToInsert.add(new Strike("Uki-goshi", 2));
+        strikesToInsert.add(new Strike("O-goshi", 2));
+        strikesToInsert.add(new Strike("Koshi-guruma", 2));
+        strikesToInsert.add(new Strike("Tsurikomi-goshi", 2));
+        strikesToInsert.add(new Strike("Harai-goshi", 2));
+        strikesToInsert.add(new Strike("Tsuri-goshi", 2));
+        strikesToInsert.add(new Strike("Hane-goshi", 2));
+        strikesToInsert.add(new Strike("Utsuri-goshi", 2));
+        strikesToInsert.add(new Strike("Ushiro-goshi", 2));
+        strikesToInsert.add(new Strike("Daki-age", 2));
+        strikesToInsert.add(new Strike("Sode-tsurikomi-goshi", 2));
 
-        takedownsToInsert.add(new Takedown("Deashi-harai", 2));
-        takedownsToInsert.add(new Takedown("Hiza-guruma", 2));
-        takedownsToInsert.add(new Takedown("Sasae-tsurikomi-ashi", 2));
-        takedownsToInsert.add(new Takedown("Osoto-gari", 2));
-        takedownsToInsert.add(new Takedown("Ouchi-gari", 2));
-        takedownsToInsert.add(new Takedown("Kosoto-gari", 2));
-        takedownsToInsert.add(new Takedown("Kouchi-gari", 2));
-        takedownsToInsert.add(new Takedown("Okuri-ashi-harai", 2));
-        takedownsToInsert.add(new Takedown("Uchi-mata", 2));
-        takedownsToInsert.add(new Takedown("Kosoto-gake", 2));
-        takedownsToInsert.add(new Takedown("Ashi-guruma", 2));
-        takedownsToInsert.add(new Takedown("Harai-tsurikomi-ashi", 2));
-        takedownsToInsert.add(new Takedown("O-guruma", 2));
-        takedownsToInsert.add(new Takedown("Osoto-guruma", 2));
-        takedownsToInsert.add(new Takedown("Osoto-Otoshi", 2));
-        takedownsToInsert.add(new Takedown("Tsubame-gaeshi", 2));
-        takedownsToInsert.add(new Takedown("Osoto-gaeshi", 2));
-        takedownsToInsert.add(new Takedown("Ouchi-gaeshi", 2));
-        takedownsToInsert.add(new Takedown("Hane-goshi-gaeshi", 2));
-        takedownsToInsert.add(new Takedown("Harai-goshi-gaeshi", 2));
-        takedownsToInsert.add(new Takedown("Uchi-mata-gaeshi", 2));
+        strikesToInsert.add(new Strike("Deashi-harai", 3));
+        strikesToInsert.add(new Strike("Hiza-guruma", 3));
+        strikesToInsert.add(new Strike("Sasae-tsurikomi-ashi", 3));
+        strikesToInsert.add(new Strike("Osoto-gari", 3));
+        strikesToInsert.add(new Strike("Ouchi-gari", 3));
+        strikesToInsert.add(new Strike("Kosoto-gari", 3));
+        strikesToInsert.add(new Strike("Kouchi-gari", 3));
+        strikesToInsert.add(new Strike("Okuri-ashi-harai", 3));
+        strikesToInsert.add(new Strike("Uchi-mata", 3));
+        strikesToInsert.add(new Strike("Kosoto-gake", 3));
+        strikesToInsert.add(new Strike("Ashi-guruma", 3));
+        strikesToInsert.add(new Strike("Harai-tsurikomi-ashi", 3));
+        strikesToInsert.add(new Strike("O-guruma", 3));
+        strikesToInsert.add(new Strike("Osoto-guruma", 3));
+        strikesToInsert.add(new Strike("Osoto-Otoshi", 3));
+        strikesToInsert.add(new Strike("Tsubame-gaeshi", 3));
+        strikesToInsert.add(new Strike("Osoto-gaeshi", 3));
+        strikesToInsert.add(new Strike("Ouchi-gaeshi", 3));
+        strikesToInsert.add(new Strike("Hane-goshi-gaeshi", 3));
+        strikesToInsert.add(new Strike("Harai-goshi-gaeshi", 3));
+        strikesToInsert.add(new Strike("Uchi-mata-gaeshi", 3));
 
-        takedownsToInsert.add(new Takedown("Tomoe-nage", 3));
-        takedownsToInsert.add(new Takedown("Sumi-gaeshi", 3));
-        takedownsToInsert.add(new Takedown("Ura-nage", 3));
-        takedownsToInsert.add(new Takedown("Hikikomi-gaeshi", 3));
-        takedownsToInsert.add(new Takedown("Tawara-gaeshi", 3));
+        strikesToInsert.add(new Strike("Tomoe-nage", 4));
+        strikesToInsert.add(new Strike("Sumi-gaeshi", 4));
+        strikesToInsert.add(new Strike("Ura-nage", 4));
+        strikesToInsert.add(new Strike("Hikikomi-gaeshi", 4));
+        strikesToInsert.add(new Strike("Tawara-gaeshi", 4));
 
-        takedownsToInsert.add(new Takedown("Yoko-Otoshi", 4));
-        takedownsToInsert.add(new Takedown("Tani-Otoshi", 4));
-        takedownsToInsert.add(new Takedown("Hane-makikomi", 4));
-        takedownsToInsert.add(new Takedown("Soto-makikomi", 4));
-        takedownsToInsert.add(new Takedown("Uki-waza", 4));
-        takedownsToInsert.add(new Takedown("Yoko-wakare", 4));
-        takedownsToInsert.add(new Takedown("Yoko-guruma", 4));
-        takedownsToInsert.add(new Takedown("Yoko-gake", 4));
-        takedownsToInsert.add(new Takedown("Daki-wakare", 4));
-        takedownsToInsert.add(new Takedown("Uchi-makikomi", 4));
-        takedownsToInsert.add(new Takedown("Kani-basami", 4));
-        takedownsToInsert.add(new Takedown("Osoto-makikomi", 4));
-        takedownsToInsert.add(new Takedown("Uchi-mata-makikomi", 4));
-        takedownsToInsert.add(new Takedown("Harai-makikomi", 4));
-        takedownsToInsert.add(new Takedown("Kawazu-gake", 4));
+        strikesToInsert.add(new Strike("Yoko-Otoshi", 5));
+        strikesToInsert.add(new Strike("Tani-Otoshi", 5));
+        strikesToInsert.add(new Strike("Hane-makikomi", 5));
+        strikesToInsert.add(new Strike("Soto-makikomi", 5));
+        strikesToInsert.add(new Strike("Uki-waza", 5));
+        strikesToInsert.add(new Strike("Yoko-wakare", 5));
+        strikesToInsert.add(new Strike("Yoko-guruma", 5));
+        strikesToInsert.add(new Strike("Yoko-gake", 5));
+        strikesToInsert.add(new Strike("Daki-wakare", 5));
+        strikesToInsert.add(new Strike("Uchi-makikomi", 5));
+        strikesToInsert.add(new Strike("Kani-basami", 5));
+        strikesToInsert.add(new Strike("Osoto-makikomi", 5));
+        strikesToInsert.add(new Strike("Uchi-mata-makikomi", 5));
+        strikesToInsert.add(new Strike("Harai-makikomi", 5));
+        strikesToInsert.add(new Strike("Kawazu-gake", 5));
 
-        takedownsToInsert.add(new Takedown("Kuzure-kesa-gatame", 5));
-        takedownsToInsert.add(new Takedown("Kata-gatame", 5));
-        takedownsToInsert.add(new Takedown("Kami-shibo-gatame", 5));
-        takedownsToInsert.add(new Takedown("Kuzure-kami-shiho-gatame", 5));
-        takedownsToInsert.add(new Takedown("Yoko-shiho-gatame", 5));
-        takedownsToInsert.add(new Takedown("Tate-shiho-gatame", 5));
-        takedownsToInsert.add(new Takedown("Kesa-gatame", 5));
-        takedownsToInsert.add(new Takedown("Hon-kesa-gatame", 5));
+        strikesToInsert.add(new Strike("Kuzure-kesa-gatame", 6));
+        strikesToInsert.add(new Strike("Kata-gatame", 6));
+        strikesToInsert.add(new Strike("Kami-shibo-gatame", 6));
+        strikesToInsert.add(new Strike("Kuzure-kami-shiho-gatame", 6));
+        strikesToInsert.add(new Strike("Yoko-shiho-gatame", 6));
+        strikesToInsert.add(new Strike("Tate-shiho-gatame", 6));
+        strikesToInsert.add(new Strike("Kesa-gatame", 6));
+        strikesToInsert.add(new Strike("Hon-kesa-gatame", 6));
 
-        takedownsToInsert.add(new Takedown("Nami-juji-jime", 6));
-        takedownsToInsert.add(new Takedown("Gyaku-juji-jime", 6));
-        takedownsToInsert.add(new Takedown("Kata-juji-jime", 6));
-        takedownsToInsert.add(new Takedown("Hadaka-jime", 6));
-        takedownsToInsert.add(new Takedown("Okuri-eri-jime", 6));
-        takedownsToInsert.add(new Takedown("Kata-ha-jime", 6));
-        takedownsToInsert.add(new Takedown("Do-jime", 6));
-        takedownsToInsert.add(new Takedown("Sode-guruma-jime", 6));
-        takedownsToInsert.add(new Takedown("Kata-te-jime", 6));
-        takedownsToInsert.add(new Takedown("Ryo-te-jime", 6));
-        takedownsToInsert.add(new Takedown("Tsukkomi-jime", 6));
-        takedownsToInsert.add(new Takedown("Sankaku-jime", 6));
+        strikesToInsert.add(new Strike("Nami-juji-jime", 7));
+        strikesToInsert.add(new Strike("Gyaku-juji-jime", 7));
+        strikesToInsert.add(new Strike("Kata-juji-jime", 7));
+        strikesToInsert.add(new Strike("Hadaka-jime", 7));
+        strikesToInsert.add(new Strike("Okuri-eri-jime", 7));
+        strikesToInsert.add(new Strike("Kata-ha-jime", 7));
+        strikesToInsert.add(new Strike("Do-jime", 7));
+        strikesToInsert.add(new Strike("Sode-guruma-jime", 7));
+        strikesToInsert.add(new Strike("Kata-te-jime", 7));
+        strikesToInsert.add(new Strike("Ryo-te-jime", 7));
+        strikesToInsert.add(new Strike("Tsukkomi-jime", 7));
+        strikesToInsert.add(new Strike("Sankaku-jime", 7));
 
-        takedownsToInsert.add(new Takedown("Ude-garami", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-juji-gatame", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-ude-gatame", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-hiza-gatame", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-waki-gatame", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-hara-gatame", 7));
-        takedownsToInsert.add(new Takedown("Ashi-garami", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-ashi-gatame", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-te-gatame", 7));
-        takedownsToInsert.add(new Takedown("Ude-hishigi-sankaku-gatame", 7));
+        strikesToInsert.add(new Strike("Ude-garami", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-juji-gatame", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-ude-gatame", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-hiza-gatame", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-waki-gatame", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-hara-gatame", 8));
+        strikesToInsert.add(new Strike("Ashi-garami", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-ashi-gatame", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-te-gatame", 8));
+        strikesToInsert.add(new Strike("Ude-hishigi-sankaku-gatame", 8));
 
-        for(Takedown t : takedownsToInsert){
+        for(Strike t : strikesToInsert){
             try {
-                DatabaseManager.getInstance(mContext).insertTakedown(db, t);
+                DatabaseManager.getInstance(mContext).insertStrike(db, t);
             } catch (SQLException ignored) {}
         }
     }

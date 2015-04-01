@@ -5,7 +5,7 @@
     android:id="@+id/rl_item_prise">
 
     <TextView
-        android:id="@+id/tv_item_titre"
+        android:id="@+id/tv_strike_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
