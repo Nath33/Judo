@@ -8,12 +8,14 @@ public class Strike {
     private int mId;
     private String mName;
     private Category mCategory;
+    private String mLink;
 
     public Strike() {}
 
-    public Strike(String name, int categoryId){
+    public Strike(String name, int categoryId, String link){
         this.mName = name;
         this.mCategory = new Category(categoryId);
+        this.mLink = link;
     }
 
     public int getId() {
@@ -38,5 +40,13 @@ public class Strike {
 
     public void setCategory(Category category){
         this.mCategory = category;
+    }
+
+    public String getLink() {
+            return mLink;
+    }
+
+    public void setLink(String mLink) {
+        this.mLink = mLink;
     }
 }

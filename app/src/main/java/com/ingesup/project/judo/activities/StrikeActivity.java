@@ -1,6 +1,7 @@
 package com.ingesup.project.judo.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +45,9 @@ public class StrikeActivity extends Activity {
         mButtonYoutube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent youtubeIntent = new Intent(StrikeActivity.this, YoutubeActivity.class);
+                youtubeIntent.putExtra(YoutubeActivity.YOUTUBE_URL, mStrike.getLink());
+                StrikeActivity.this.startActivity(youtubeIntent);
             }
         });
     }

@@ -99,6 +99,7 @@ public class DatabaseManager {
         ContentValues contentValues = new ContentValues();
         contentValues.put(StrikeTable.COLUMN_NAME, strikeToInsert.getName());
         contentValues.put(StrikeTable.COLUMN_CATEGORY_ID, strikeToInsert.getCategory().getId());
+        contentValues.put(StrikeTable.COLUMN_LINK, strikeToInsert.getLink());
 
         long newRowId = database.insert(StrikeTable.TABLE_NAME, null, contentValues);
 
@@ -120,6 +121,7 @@ public class DatabaseManager {
             strike.setId(cursor.getInt(cursor.getColumnIndex(StrikeTable._ID)));
             strike.setName(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_NAME)));
             strike.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(StrikeTable.COLUMN_CATEGORY_ID))));
+            strike.setLink(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_LINK)));
             strikes.add(strike);
         }
 
@@ -142,6 +144,7 @@ public class DatabaseManager {
             strike.setId(cursor.getInt(cursor.getColumnIndex(StrikeTable._ID)));
             strike.setName(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_NAME)));
             strike.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(StrikeTable.COLUMN_CATEGORY_ID))));
+            strike.setLink(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_LINK)));
 
             strikes.add(strike);
         }
@@ -162,6 +165,7 @@ public class DatabaseManager {
             strike.setId(cursor.getInt(cursor.getColumnIndex(StrikeTable._ID)));
             strike.setName(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_NAME)));
             strike.setCategory(getCategory(cursor.getInt(cursor.getColumnIndex(StrikeTable.COLUMN_CATEGORY_ID))));
+            strike.setLink(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_LINK)));
 
             return strike;
         }
