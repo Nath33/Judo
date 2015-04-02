@@ -2,5 +2,12 @@
 <resources>
 
     <string name="app_name">Judo</string>
+    <string name="title_activity_youtube">YoutubeActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Youtube -->
+    <string name="youtube_api_key">AIzaSyAKuWxDADkArhC7H_RxFXVGiZcxb954yxs</string>
+    <string name="youtube_error">Une erreur s\'est produite lors de la lecture de la vidéo.</string>
 
 </resources>
