@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.ingesup.project.judo.beans.Category;
 import com.ingesup.project.judo.beans.Strike;
+import com.ingesup.project.judo.beans.Strikes;
 import com.ingesup.project.judo.database.tables.CategoryTable;
 import com.ingesup.project.judo.database.tables.StrikeTable;
 
@@ -109,8 +110,8 @@ public class DatabaseManager {
         return newRowId;
     }
 
-    public List<Strike> getAllStrikes(){
-        List<Strike> strikes = new ArrayList<Strike>();
+    public Strikes getAllStrikes(){
+        Strikes strikes = new Strikes();
 
         SQLiteDatabase db = mDatabaseOpenHelper.getReadableDatabase();
 
@@ -124,6 +125,8 @@ public class DatabaseManager {
             strike.setLink(cursor.getString(cursor.getColumnIndex(StrikeTable.COLUMN_LINK)));
             strikes.add(strike);
         }
+
+        cursor.close();
 
         return strikes;
     }
