@@ -23,10 +23,20 @@
     <fragment
         android:layout_below="@id/tv_category_name"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:name="com.google.android.youtube.player.YouTubePlayerFragment"
-        android:id="@+id/youtubeplayerfragment"
+        android:id="@+id/youtubeplayerfragment_1"
         ></fragment>
+    <!--
+    <fragment
+        android:layout_below="@+id/youtubeplayerfragment_1"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+        android:id="@+id/youtubeplayerfragment_2"
+        ></fragment>
+        -->
 
 
 </RelativeLayout>

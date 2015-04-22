@@ -19,7 +19,7 @@ import com.ingesup.project.judo.database.DatabaseManager;
 /**
  * Created by Changeform on 27/03/2015.
  */
-public class StrikeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
+public class StrikeActivity extends YouTubeBaseActivity{
 
     public static final String EXTRA_STRIKE_ID = "EXTRA_STRIKE_ID";
 
@@ -27,8 +27,10 @@ public class StrikeActivity extends YouTubeBaseActivity implements YouTubePlayer
 
     private TextView mTextViewStrikeName;
     private TextView mTextViewCategoryName;
-    private YouTubePlayerFragment youTubePlayerFragment;
-    private String mVideoUrl;
+    private YouTubePlayerFragment youTubePlayerFragment_1;
+    private YouTubePlayerFragment youTubePlayerFragment_2;
+    private String mVideoUrl_1;
+    private String mVideoUrl_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class StrikeActivity extends YouTubeBaseActivity implements YouTubePlayer
             finish();
 
         mStrike = DatabaseManager.getInstance(this).getStrike(strikeId);
-        mVideoUrl = mStrike.getLink();
+        mVideoUrl_1 = mStrike.getLink_1();
+        //mVideoUrl_2 = mStrike.getLink_2();
 
         mTextViewStrikeName = (TextView) findViewById(R.id.tv_strike_name);
         mTextViewCategoryName = (TextView) findViewById(R.id.tv_category_name);
@@ -49,20 +52,37 @@ public class StrikeActivity extends YouTubeBaseActivity implements YouTubePlayer
         mTextViewStrikeName.setText(mStrike.getName());
         mTextViewCategoryName.setText(mStrike.getCategory().getName());
 
-        youTubePlayerFragment = (YouTubePlayerFragment)getFragmentManager()
-                .findFragmentById(R.id.youtubeplayerfragment);
-        youTubePlayerFragment.initialize(getString(R.string.youtube_api_key), this);
-    }
-    @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
-        /** Start buffering **/
-        if (!wasRestored) {
-            youTubePlayer.loadVideo(mVideoUrl);
-        }
-    }
-    @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult
-            youTubeInitializationResult) {
-        Toast.makeText(this, getString(R.string.youtube_error), Toast.LENGTH_LONG).show();
+        youTubePlayerFragment_1 = (YouTubePlayerFragment)getFragmentManager()
+                .findFragmentById(R.id.youtubeplayerfragment_1);
+        youTubePlayerFragment_1.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                if (!b) {
+                    youTubePlayer.loadVideo(mVideoUrl_1);
+                    youTubePlayer.pause();
+                }
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Toast.makeText(StrikeActivity.this, getString(R.string.youtube_error), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        /*youTubePlayerFragment_2 = (YouTubePlayerFragment)getFragmentManager()
+                .findFragmentById(R.id.youtubeplayerfragment_2);
+        youTubePlayerFragment_2.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                if (!b) {
+                    youTubePlayer.loadVideo(mVideoUrl_2);
+                }
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Toast.makeText(StrikeActivity.this, getString(R.string.youtube_error), Toast.LENGTH_LONG).show();
+            }
+        });*/
     }
 }
