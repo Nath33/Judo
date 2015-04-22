@@ -21,10 +21,6 @@
         </activity>
         <activity android:name=".activities.StrikeActivity" />
 
-        <activity
-            android:name=".activities.YoutubeActivity"
-            android:label="@string/title_activity_youtube" >
-        </activity>
     </application>
 
 </manifest>

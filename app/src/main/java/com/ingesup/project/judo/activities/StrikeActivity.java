@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.ingesup.project.judo.R;
 import com.ingesup.project.judo.beans.Strike;
 import com.ingesup.project.judo.database.DatabaseManager;
@@ -14,7 +19,7 @@ import com.ingesup.project.judo.database.DatabaseManager;
 /**
  * Created by Changeform on 27/03/2015.
  */
-public class StrikeActivity extends Activity {
+public class StrikeActivity extends YouTubeBaseActivity{
 
     public static final String EXTRA_STRIKE_ID = "EXTRA_STRIKE_ID";
 
@@ -22,7 +27,10 @@ public class StrikeActivity extends Activity {
 
     private TextView mTextViewStrikeName;
     private TextView mTextViewCategoryName;
-    private Button mButtonYoutube;
+    private YouTubePlayerFragment youTubePlayerFragment_1;
+    private YouTubePlayerFragment youTubePlayerFragment_2;
+    private String mVideoUrl_1;
+    private String mVideoUrl_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +43,46 @@ public class StrikeActivity extends Activity {
             finish();
 
         mStrike = DatabaseManager.getInstance(this).getStrike(strikeId);
+        mVideoUrl_1 = mStrike.getLink_1();
+        //mVideoUrl_2 = mStrike.getLink_2();
 
         mTextViewStrikeName = (TextView) findViewById(R.id.tv_strike_name);
         mTextViewCategoryName = (TextView) findViewById(R.id.tv_category_name);
-        mButtonYoutube = (Button) findViewById(R.id.b_youtube);
 
         mTextViewStrikeName.setText(mStrike.getName());
         mTextViewCategoryName.setText(mStrike.getCategory().getName());
-        mButtonYoutube.setOnClickListener(new View.OnClickListener() {
+
+        youTubePlayerFragment_1 = (YouTubePlayerFragment)getFragmentManager()
+                .findFragmentById(R.id.youtubeplayerfragment_1);
+        youTubePlayerFragment_1.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
             @Override
-            public void onClick(View view) {
-                Intent youtubeIntent = new Intent(StrikeActivity.this, YoutubeActivity.class);
-                youtubeIntent.putExtra(YoutubeActivity.YOUTUBE_URL, mStrike.getLink());
-                StrikeActivity.this.startActivity(youtubeIntent);
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                if (!b) {
+                    youTubePlayer.loadVideo(mVideoUrl_1);
+                    youTubePlayer.pause();
+                }
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Toast.makeText(StrikeActivity.this, getString(R.string.youtube_error), Toast.LENGTH_LONG).show();
             }
         });
+
+        /*youTubePlayerFragment_2 = (YouTubePlayerFragment)getFragmentManager()
+                .findFragmentById(R.id.youtubeplayerfragment_2);
+        youTubePlayerFragment_2.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                if (!b) {
+                    youTubePlayer.loadVideo(mVideoUrl_2);
+                }
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Toast.makeText(StrikeActivity.this, getString(R.string.youtube_error), Toast.LENGTH_LONG).show();
+            }
+        });*/
     }
 }

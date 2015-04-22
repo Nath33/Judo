@@ -9,5 +9,8 @@
     <!-- Youtube -->
     <string name="youtube_api_key">AIzaSyAKuWxDADkArhC7H_RxFXVGiZcxb954yxs</string>
     <string name="youtube_error">Une erreur s\'est produite lors de la lecture de la vidéo.</string>
+    <string name="strike_name">Prise : </string>
+    <string name="category_name">Catégorie : </string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

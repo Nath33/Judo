@@ -8,14 +8,16 @@ public class Strike {
     private int mId;
     private String mName;
     private Category mCategory;
-    private String mLink;
+    private String mLink_1;
+    private String mLink_2;
 
     public Strike() {}
 
-    public Strike(String name, int categoryId, String link){
+    public Strike(String name, int categoryId, String link_1, String mLink_2){
         this.mName = name;
         this.mCategory = new Category(categoryId);
-        this.mLink = link;
+        this.mLink_1 = link_1;
+        this.mLink_2 = mLink_2;
     }
 
     public int getId() {
@@ -42,11 +44,14 @@ public class Strike {
         this.mCategory = category;
     }
 
-    public String getLink() {
-            return mLink;
+    public String getLink_1() {
+            return mLink_1;
+    }
+    public String getLink_2() {
+        return mLink_2;
     }
 
-    public void setLink(String mLink) {
-        this.mLink = mLink;
+    public void setLink(String mLink_1, String mLink_2) {
+        this.mLink_1 = mLink_1;this.mLink_2 = mLink_2;
     }
 }
